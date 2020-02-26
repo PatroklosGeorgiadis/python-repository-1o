@@ -1,0 +1,36 @@
+def cardLuhnChecksumIsValid(card_number):
+    sum = 0
+    num_digits = len(card_number)
+    oddeven = num_digits & 1
+
+    for count in range(0, num_digits):
+        digit = int(card_number[count])
+
+        if not (( count & 1 ) ^ oddeven ):
+            digit = digit * 2
+        if digit > 9:
+            digit = digit - 9
+        sum = sum + digit
+        
+    if( (sum % 10) == 0 ):
+        print ("Your Credit Card Number is Valid")
+    else:
+        print("Your Credit Card Number is Invalid")
+
+def checkLength(card_number):
+    x=str(card_number)
+    
+    if (len(x)==16):
+        
+        try:
+            cardLuhnChecksumIsValid(card_number)
+        except:
+            card_number=input("Your number does not contain 16-digits. Try again: ")
+            checkLength(card_number)
+            
+    else:
+        card_number=input("Your number does not contain 16-digits. Try again: ")
+        checkLength(card_number)
+
+card_number=input("Enter your 16-digit credit card number: ")
+checkLength(card_number)
