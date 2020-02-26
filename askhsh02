@@ -1,0 +1,19 @@
+x=("f","c","k","r")
+y=("b","d","g","h","j","l","m","n","p","q","s","t","v","w","x","y","z")
+badWord=0
+goodWord=0
+
+with open('wordranking.txt','r') as f:
+    for word in f.read().split():
+        for a in range (0,4):
+            badletter=word.count(x[a])
+            badWord=badWord+badletter
+        for b in range (0,17):
+            goodletter=word.count(y[b])
+            goodWord=goodWord+goodletter
+        if (badWord>goodWord):
+                print(word + " is a bad word")
+        else:
+                print(word + " is a good word")
+        badWord=0
+        goodWord=0
